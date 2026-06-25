@@ -1,0 +1,143 @@
+{
+  "entities": {
+    "Booking": {
+      "title": "Booking",
+      "description": "Details of a photo/video session booking",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique firestore document ID" },
+        "orderId": { "type": "string", "description": "Formatted order ID e.g., GPS20260001" },
+        "customerName": { "type": "string", "description": "Full name of the customer" },
+        "phone": { "type": "string", "description": "Contact phone number" },
+        "whatsapp": { "type": "string", "description": "WhatsApp number for automatic alerts" },
+        "email": { "type": "string", "description": "Email address" },
+        "serviceId": { "type": "string", "description": "ID of the selected service" },
+        "serviceName": { "type": "string", "description": "Name of the selected service" },
+        "price": { "type": "number", "description": "Base price of the service" },
+        "bookingDate": { "type": "string", "description": "Date of the event" },
+        "bookingTime": { "type": "string", "description": "Time of the event" },
+        "address": { "type": "string", "description": "Event address" },
+        "city": { "type": "string", "description": "City of the event" },
+        "state": { "type": "string", "description": "State of the event" },
+        "pincode": { "type": "string", "description": "Pincode of the venue" },
+        "instructions": { "type": "string", "description": "Special instructions" },
+        "paymentMethod": { "type": "string", "description": "UPI, Google Pay, PhonePe, Paytm, Debit Card, Credit Card, Net Banking, Cash" },
+        "advanceAmount": { "type": "number", "description": "Amount paid in advance" },
+        "remainingAmount": { "type": "number", "description": "Amount remaining to be paid" },
+        "status": { "type": "string", "description": "Pending, Confirmed, Photographer Assigned, Payment Pending, Work in Progress, Editing, Ready for Delivery, Completed, Cancelled" },
+        "photographerAssigned": { "type": "string", "description": "Name of the photographer assigned" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp when booking was created" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Timestamp when booking was last updated" }
+      },
+      "required": ["customerName", "phone", "whatsapp", "email", "serviceId", "serviceName", "price", "bookingDate", "bookingTime", "address", "city", "state", "pincode", "paymentMethod", "advanceAmount", "remainingAmount", "status", "orderId"]
+    },
+    "Customer": {
+      "title": "Customer",
+      "description": "Customer contact profile information",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Customer ID" },
+        "name": { "type": "string", "description": "Customer name" },
+        "phone": { "type": "string", "description": "Customer phone" },
+        "whatsapp": { "type": "string", "description": "Customer WhatsApp" },
+        "email": { "type": "string", "description": "Customer email" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "phone", "whatsapp", "email"]
+    },
+    "Service": {
+      "title": "Service",
+      "description": "Details about a photo/video service package offered by Gupta Photo Studio",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Service ID" },
+        "name": { "type": "string", "description": "Service name" },
+        "description": { "type": "string", "description": "Service package description" },
+        "price": { "type": "number", "description": "Standard service price in INR" },
+        "discount": { "type": "number", "description": "Applicable discount in INR" },
+        "tax": { "type": "number", "description": "Applicable GST tax percentage" },
+        "image": { "type": "string", "description": "Standard high quality image URL" }
+      },
+      "required": ["name", "description", "price", "discount", "tax"]
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "Financial payment transaction records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Payment ID" },
+        "bookingId": { "type": "string", "description": "Associated booking document ID" },
+        "orderId": { "type": "string", "description": "Associated human-readable Order ID" },
+        "amount": { "type": "number", "description": "Transaction amount in INR" },
+        "method": { "type": "string", "description": "UPI, Card, Cash etc." },
+        "status": { "type": "string", "description": "Pending, Paid, Partially Paid, Refunded" },
+        "transactionId": { "type": "string", "description": "Transaction reference number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["bookingId", "orderId", "amount", "method", "status", "createdAt"]
+    },
+    "Invoice": {
+      "title": "Invoice",
+      "description": "Professional billing invoice generated for confirmed bookings",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Invoice ID" },
+        "invoiceNumber": { "type": "string", "description": "Formatted invoice number e.g. GINV-1001" },
+        "bookingId": { "type": "string", "description": "Associated booking document ID" },
+        "orderId": { "type": "string", "description": "Associated Order ID" },
+        "customerName": { "type": "string", "description": "Customer name" },
+        "phone": { "type": "string", "description": "Customer phone" },
+        "email": { "type": "string", "description": "Customer email" },
+        "address": { "type": "string", "description": "Customer billing address" },
+        "serviceName": { "type": "string", "description": "Service name" },
+        "bookingDate": { "type": "string", "description": "Date of event" },
+        "amount": { "type": "number", "description": "Base price" },
+        "gst": { "type": "number", "description": "Calculated GST amount" },
+        "discount": { "type": "number", "description": "Applied discount" },
+        "finalAmount": { "type": "number", "description": "Final payable amount" },
+        "paymentStatus": { "type": "string", "description": "Status of the payment" },
+        "qrCodeData": { "type": "string", "description": "Payment QR code mock string" },
+        "signature": { "type": "string", "description": "Mock digital signature text" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["invoiceNumber", "bookingId", "orderId", "customerName", "phone", "email", "address", "serviceName", "bookingDate", "amount", "gst", "discount", "finalAmount", "paymentStatus", "createdAt"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Admin configuration and state",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "User UID" },
+        "email": { "type": "string", "description": "Admin email" },
+        "role": { "type": "string", "description": "Admin role" }
+      },
+      "required": ["uid", "email"]
+    }
+  },
+  "firestore": {
+    "/bookings/{bookingId}": {
+      "schema": { "$ref": "#/entities/Booking" },
+      "description": "Interactive bookings collection"
+    },
+    "/customers/{customerId}": {
+      "schema": { "$ref": "#/entities/Customer" },
+      "description": "Interactive customers directory"
+    },
+    "/services/{serviceId}": {
+      "schema": { "$ref": "#/entities/Service" },
+      "description": "Services and packages available for photo sessions"
+    },
+    "/payments/{paymentId}": {
+      "schema": { "$ref": "#/entities/Payment" },
+      "description": "Database of payment records"
+    },
+    "/invoices/{invoiceId}": {
+      "schema": { "$ref": "#/entities/Invoice" },
+      "description": "Database of generated PDF invoices"
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/Admin" },
+      "description": "Admin control list"
+    }
+  }
+}

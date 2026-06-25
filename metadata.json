@@ -1,0 +1,6 @@
+{
+  "name": "Gupta Photo Studio",
+  "description": "Premium Luxury Photography & Videography Booking Portal",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
