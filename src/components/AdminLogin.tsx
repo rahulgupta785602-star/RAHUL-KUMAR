@@ -16,7 +16,7 @@ export default function AdminLogin({ onClose, onLoginSuccess }: AdminLoginProps)
     e.preventDefault();
     setError('');
 
-    if (username === 'rahulgupta@123' && password === 'Raghul@123') {
+    if (username === 'rahulgupta@123' && password === 'Rahul@123') {
       setIsLoggingIn(true);
       setTimeout(() => {
         setIsLoggingIn(false);
@@ -75,7 +75,7 @@ export default function AdminLogin({ onClose, onLoginSuccess }: AdminLoginProps)
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="rahulgupta@123"
+                placeholder="Enter username"
                 className="w-full bg-zinc-900 border border-zinc-800 text-white rounded-none py-2.5 pl-9 pr-3 text-xs tracking-wider focus:outline-none focus:border-[#D4AF37]"
               />
             </div>
@@ -93,7 +93,7 @@ export default function AdminLogin({ onClose, onLoginSuccess }: AdminLoginProps)
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Raghul@123"
+                placeholder="**********"
                 className="w-full bg-zinc-900 border border-zinc-800 text-white rounded-none py-2.5 pl-9 pr-3 text-xs tracking-wider focus:outline-none focus:border-[#D4AF37]"
               />
             </div>
